@@ -12,7 +12,7 @@ func (c *Controller) GetUserTransactions(context *gin.Context) {
 	context.JSON(200, transactions)
 }
 
-func (c *Controller) InsertUserTransactions(context *gin.Context) {
+func (c *Controller) InsertUserTransaction(context *gin.Context) {
 	transactions := c.getTransactionsByUserTel(context.Param("tel"))
 	context.JSON(200, transactions)
 }
