@@ -8,6 +8,7 @@ import (
 )
 
 func (c *Controller) insertUser(user *models.User) error {
+	user.Fill()
 	err := generateVerifyingKey(user)
 	if err != nil {
 		return err
