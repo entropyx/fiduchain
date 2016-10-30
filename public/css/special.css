@@ -1,0 +1,47 @@
+header, main, footer {
+      padding-left: 300px;
+    }
+
+    @media only screen and (max-width : 992px) {
+      header, main, footer {
+        padding-left: 0;
+      }
+    }
+li.logo {
+    text-align: center;
+    margin-top: 32px;
+    margin-bottom: 60px;
+}
+    #logo-container {
+        height: 57px;
+        margin-bottom: 32px;
+    }
+    nav.top-nav {
+        height: 122px;
+        box-shadow: none;
+        background-color: #0d47a1;
+    }
+    nav.top-nav a.page-title {
+    line-height: 122px;
+    font-size: 40px;
+}
+.principal{
+  font-size: 20px;
+  color: black;
+  font-family: 'Rock Salt', cursive;
+  text-shadow: 3px 3px #e8eaf6;
+}
+.morado{
+  background-color: #fff;
+}
+
+.niu-card{
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.parallax-container {
+      height: 180px;
+    }

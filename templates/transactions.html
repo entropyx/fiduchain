@@ -1,67 +1,107 @@
-<html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  </head>
-  <body>
-    <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="#">Fiduchain</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <!--Import Google Icon Font-->
+      <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Rock+Salt" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="/public/css/materialize/css/materialize.min.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="/public/css/special.css" />
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+<body>
+<header>
+  <nav class="top-nav">
+    <div class="container">
+        <div class="nav-wrapper">
+          <a class="page-title">Transacciones</a>
+        </div>
     </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
+  </nav>
+<!--
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="header">
+          <h1>Reto Flap CIE</h1>
+        </div>
+        <hr>
+      </div>
+    </div>
+-->
+    <ul id="slide-out" class="side-nav fixed morado">
+      <li class="logo">
+          <a id="logo-container" class="brand-logo" href="#">
+            <img src="../../public/assets/dog.png" alt="" height="120" width="160" />
+          </a>
+        </li>
+        <li>
+          <div class="principal center-align">
+            <h3>
+              FiduChain
+            </h3>
+          </div>
+        </li>
         <li><a href="/users">Clientes</a></li>
-        <li class="active"><a href="#">Transacciones <span class="sr-only">(current)</span></a></li>
-
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Ejecutivo Godin <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li role="separator" class="divider"></li>
-            <li><a href="#">Separated link</a></li>
-          </ul>
+        <li><a href="#">Transacciones</a></li>
+        <li>
+            <div class="niu-card card-panel deep-purple darken-4 pinned">
+              <span class="white-text"><div id="selectedAlgo">
+                <h5>Transacciones de  <span>{{- .Phone }}</span></h5>
+                <p><strong>Debt: </strong> {{- .Debt}}</p>
+                <p><strong>Payment:</strong> {{- .Payment}}</p>
+                <p><strong>Balance:</strong> {{- .Balance}}</p>
+              </div>
+              </span>
+            </div>
         </li>
       </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
-  <h1>Transacciones de  <span>{{- .Phone }}</span></h1>
-  <h2>Debt: </h2> <h3>{{- .Debt}}</h3>
-  <h2>Payment: </h2> <h3>{{- .Payment}}</h3>
-  <h2>Balance: </h2> <h3>{{- .Balance}}</h3>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Phone</th>
-        <th>Monto</th>
-        <th>Timestamp</th>
-        <th>Timelimit</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{- range .Transactions }}
-        <tr>
-          <td>{{.UserTel}}</td>
-          <td>{{.Amount}}</td>
-          <td>{{.Timestamp}}</td>
-          <td>{{.TimeLimit}}</td>
-        </tr>
-      {{- end }}
-    </tbody>
-  </table>
+      <a href="#" data-activates="slide-out" class="button-collapse hide-on-med-and-up"><i class="material-icons">menu</i></a>
+</header>
+<main>
+  <div class="section white">
+   <div class="row container">
+     <table class="table">
+       <thead>
+         <tr>
+           <th>Phone</th>
+           <th>Monto</th>
+           <th>Timestamp</th>
+           <th>Timelimit</th>
+         </tr>
+       </thead>
+       <tbody>
+         {{- range .Transactions }}
+           <tr>
+             <td>{{.UserTel}}</td>
+             <td>{{.Amount}}</td>
+             <td>{{.Timestamp}}</td>
+             <td>{{.TimeLimit}}</td>
+           </tr>
+         {{- end }}
+       </tbody>
+     </table>
+
+
+
+
+   </div>
+ </div>
+</main>
+
+<footer class="page-footer  indigo accent-3">
+  <div class="footer-copyright">
+    <div class="container">
+      © 2016 HACKLLOWEEN BBVA
+    </div>
+  </div>
+</footer>
+
+
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="/public/css/materialize/js/materialize.js"></script>
 </body>
 </html>
