@@ -27,4 +27,5 @@ func (u *User) SetRandomSigningKey() {
 func (u *User) Fill() {
 	u.SetRandomSigningKey()
 	u.SetRandomVerifyingKey()
+	u.SetRandomTel()
 }
