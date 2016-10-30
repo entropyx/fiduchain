@@ -19,5 +19,6 @@ func main() {
 	ctrl := controllers.New(session)
 	r := gin.Default()
 	r.GET("/users/:tel/transactions", ctrl.GetUserTransactions)
+	r.POST("/users/:tel/transactions", ctrl.InsertUserTransactions)
 	r.Run(":8081") // listen and server on 0.0.0.0:8080
 }
