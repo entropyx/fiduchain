@@ -14,7 +14,15 @@ func (c *Controller) GetUserTransactions(ctx *iris.Context) {
 	transactions = append(transactions, &models.Transaction{
 		Amount:  1,
 		UserTel: "234234"})
-	ctx.Render("transactions.html", transactions, iris.RenderOptions{"gzip": false, "charset": "UTF-8"})
+	type message struct {
+		Phone        string
+		Transactions []*models.Transaction
+	}
+	msg := message{
+		Phone:        ctx.Param("tel"),
+		Transactions: transactions,
+	}
+	ctx.Render("transactions.html", msg, iris.RenderOptions{"gzip": false, "charset": "UTF-8"})
 
 }
 

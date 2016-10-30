@@ -20,8 +20,8 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="/users">Clientes</a></li>
-        <li class="active"><a href="#">Transacciones <span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="#">Clientes</a></li>
+        <li><a href="/users/5547318244/transactions">Transacciones <span class="sr-only">(current)</span></a></li>
 
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -39,26 +39,33 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-  <h1>Transacciones de  {{- .Phone }}</h1>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Phone</th>
-        <th>Monto</th>
-        <th>Timestamp</th>
-        <th>Timelimit</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{- range .Transactions }}
+    <h1>Prospectos de Credito</h1>
+    <table class="table">
+      <thead>
         <tr>
-          <td>{{.UserTel}}</td>
-          <td>{{.Amount}}</td>
-          <td>{{.Timestamp}}</td>
-          <td>{{.TimeLimit}}</td>
+          <th>Telefono</th>
+          <th>Nombre</th>
         </tr>
-      {{- end }}
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+          <tr>
+            <td><a href="/users/5547318244/transactions">5547318244</a></td>
+            <td>Pablo Perez</td>
+          </tr>
+          <tr>
+            <td><a href="/users/5564345664/transactions">5564345664</a></td>
+            <td>Diosesano Mungia</td>
+          </tr>
+          <tr>
+            <td><a href="/users/5564233342/transactions">5564233342</a></td>
+            <td>Maria Blanca</td>
+          </tr>
+          <tr>
+            <td><a href="/users/5523443364/transactions">5523443364</a></td>
+            <td>Cristiano Arvizu</td>
+          </tr>
+      </tbody>
+    </table>
+</div>
 </body>
 </html>
