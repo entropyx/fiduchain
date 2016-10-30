@@ -31,6 +31,6 @@ func main() {
 	}
 	ctrl := controllers.New(session)
 	iris.Get("/users/:tel/transactions", ctrl.GetUserTransactions)
-
+	iris.Get("/users", ctrl.GetPhones)
 	iris.Listen(":8081")
 }

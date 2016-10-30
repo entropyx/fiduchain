@@ -54,18 +54,11 @@ func TestUsers(t *testing.T) {
 			ctr := New(session)
 
 			Convey("When the user in inserted", func() {
+				user.Fill()
 				ctr.insertUser(user)
 
 				Convey("err should be nil", func() {
 					So(err, ShouldBeNil)
-				})
-
-				Convey("The verifying key should not be empty", func() {
-					So(user.VerifyingKey, ShouldNotBeBlank)
-				})
-
-				Convey("The signing key should not be empty", func() {
-					So(user.SigningKey, ShouldNotBeBlank)
 				})
 			})
 		})

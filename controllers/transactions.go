@@ -13,7 +13,6 @@ func (c *Controller) GetUserTransactions(ctx *iris.Context) {
 	transactions = append(transactions, &models.Transaction{
 		Amount:  1,
 		UserTel: "234234"})
-<<<<<<< HEAD
 	type message struct {
 		Phone        string
 		Transactions []*models.Transaction
@@ -23,9 +22,6 @@ func (c *Controller) GetUserTransactions(ctx *iris.Context) {
 		Transactions: transactions,
 	}
 	ctx.Render("transactions.html", msg, iris.RenderOptions{"gzip": false, "charset": "UTF-8"})
-=======
-	ctx.Render("transactions.html", transactions, iris.RenderOptions{"gzip": false, "charset": "UTF-8"})
->>>>>>> ca6828560941c0b5d387a00ed8a638248744c138
 
 }
 
