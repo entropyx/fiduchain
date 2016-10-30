@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <h1>Transactions of XXXXXX</h1>
+  <table class="table">
+    <thead>
+      <th>
+        <td>Phone</td>
+        <td>Monto</td>
+        <td>Timestamp</td>
+        <td>Timelimit</td>
+      </th>
+    </thead>
+    <tbody>
+      {{- range .}}
+        <tr>
+          <td>{{.Amount}}</td>
+        </tr>
+      {{- end }}
+    </tbody>
+  </table>
