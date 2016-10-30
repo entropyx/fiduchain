@@ -43,19 +43,19 @@
   <table class="table">
     <thead>
       <tr>
-        <th>Phone</th>
         <th>Monto</th>
         <th>Timestamp</th>
         <th>Timelimit</th>
+        <th>Late</th>
       </tr>
     </thead>
     <tbody>
       {{- range .Transactions }}
         <tr>
-          <td>{{.UserTel}}</td>
-          <td>{{.Amount}}</td>
+          <td>${{.AmountWithoutCents}}</td>
           <td>{{.Timestamp}}</td>
           <td>{{.TimeLimit}}</td>
+          <td>{{.Late}}</td>
         </tr>
       {{- end }}
     </tbody>

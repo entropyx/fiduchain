@@ -1,6 +1,8 @@
 package controllers
 
 import (
+	"fmt"
+
 	"github.com/entropyx/fiduchain/cli"
 	"github.com/entropyx/fiduchain/models"
 	"github.com/gin-gonic/gin"
@@ -11,9 +13,7 @@ import (
 
 func (c *Controller) GetUserTransactions(ctx *iris.Context) {
 	transactions := c.getTransactionsByUserTel(ctx.Param("tel"))
-	transactions = append(transactions, &models.Transaction{
-		Amount:  1,
-		UserTel: "234234"})
+	fmt.Println("transactions", transactions)
 	type message struct {
 		Phone        string
 		Transactions []*models.Transaction
@@ -36,9 +36,9 @@ func (c *Controller) Transactions() *mgo.Collection {
 }
 
 func (c *Controller) getTransactionsByUserTel(tel string) []*models.Transaction {
-	transactions := make([]*models.Transaction, 0)
+	var transactions []*models.Transaction
 	col := c.Transactions()
-	col.Find(bson.M{"user_tel": tel})
+	col.Find(bson.M{"user_tel": tel}).All(&transactions)
 	return transactions
 }
 
@@ -47,6 +47,8 @@ func (c *Controller) InsertTransaction(transaction *models.Transaction) error {
 	if err != nil {
 		return err
 	}
+	transaction.SetAmountWithoutCents()
+	transaction.SetLate()
 	col := c.Transactions()
 	return col.Insert(transaction)
 }

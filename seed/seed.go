@@ -27,7 +27,7 @@ func main() {
 		}
 		for j := 0; j < 20; j++ {
 			transaction := &models.Transaction{
-				Amount:       utils.RandInt(10000, 300000),
+				Amount:       utils.RandInt(-300000, 300000),
 				VerifyingKey: user.VerifyingKey,
 				SigningKey:   user.SigningKey,
 				Timestamp:    int(time.Now().UnixNano()),
