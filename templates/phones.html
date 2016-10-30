@@ -39,26 +39,6 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-  <h1>Transacciones de  {{- .Phone }}</h1>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Phone</th>
-        <th>Monto</th>
-        <th>Timestamp</th>
-        <th>Timelimit</th>
-      </tr>
-    </thead>
-    <tbody>
-      {{- range .Transactions }}
-        <tr>
-          <td>{{.UserTel}}</td>
-          <td>{{.Amount}}</td>
-          <td>{{.Timestamp}}</td>
-          <td>{{.TimeLimit}}</td>
-        </tr>
-      {{- end }}
-    </tbody>
-  </table>
+
 </body>
 </html>
