@@ -16,8 +16,9 @@ func (c *Controller) GetUserTransactions(ctx *iris.Context) {
 
 }
 
-func (c *Controller) DB(name string) *mgo.Database {
-	return c.s.DB(name)
+func (c *Controller) InsertUserTransactions(context *gin.Context) {
+	transactions := c.getTransactionsByUserTel(context.Param("tel"))
+	context.JSON(200, transactions)
 }
 
 func (c *Controller) Transactions() *mgo.Collection {
@@ -29,4 +30,14 @@ func (c *Controller) getTransactionsByUserTel(tel string) []*models.Transaction 
 	col := c.Transactions()
 	col.Find(bson.M{"user_tel": tel})
 	return transactions
+}
+
+func (c *Controller) insertUserTransactions() error {
+
+	return nil
+}
+
+func (c *Controller) insertTransaction(transaction *models.Transaction) error {
+	col := c.Transactions()
+	return col.Insert(transaction)
 }

@@ -6,7 +6,10 @@ type Controller struct {
 	s *mgo.Session
 }
 
-func New(session *mgo.Session) *Controller {
+func (c *Controller) DB(name string) *mgo.Database {
+	return c.s.DB(name)
+}
 
+func New(session *mgo.Session) *Controller {
 	return &Controller{session}
 }
