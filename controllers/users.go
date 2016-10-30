@@ -10,6 +10,7 @@ import (
 func (c *Controller) InsertUser(user *models.User) error {
 	user.Fill()
 	err := generateVerifyingKey(user)
+	user.SetRandomName()
 	if err != nil {
 		return err
 	}

@@ -48,6 +48,12 @@
         </tr>
       </thead>
       <tbody>
+          {{- range .Users }}
+            <tr>
+              <td><a href="/users/5547318244/transactions">{{.Tel}}</a></td>
+              <td>{{.FullName}}</td>
+            </tr>
+          {{- end }}
           <tr>
             <td><a href="/users/5547318244/transactions">5547318244</a></td>
             <td>Pablo Perez</td>

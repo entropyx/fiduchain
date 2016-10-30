@@ -1,14 +1,18 @@
 package controllers
 
 import (
-	"fmt"
-
+	"github.com/entropyx/fiduchain/models"
 	"github.com/kataras/iris"
 )
 
 func (c *Controller) GetPhones(ctx *iris.Context) {
+	type message struct {
+		Users []*models.User
+	}
 	//Getting list of users
 	users := c.getUsers()
-	fmt.Println(users)
-	ctx.ServeFile("templates/phones.html", false)
+	msg := message{
+		Users: users,
+	}
+	ctx.Render("phones.html", msg, iris.RenderOptions{"gzip": false, "charset": "UTF-8"})
 }
