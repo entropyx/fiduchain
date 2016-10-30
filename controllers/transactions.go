@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"github.com/entropyx/fiduchain/models"
+	"github.com/gin-gonic/gin"
 	"github.com/kataras/iris"
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
@@ -11,7 +12,7 @@ func (c *Controller) GetUserTransactions(ctx *iris.Context) {
 	transactions := c.getTransactionsByUserTel(ctx.Param("tel"))
 	transactions = append(transactions, &models.Transaction{
 		Amount:  1,
-		UserTel: 234234})
+		UserTel: "234234"})
 	ctx.Render("transactions.html", transactions, iris.RenderOptions{"gzip": false, "charset": "UTF-8"})
 
 }
