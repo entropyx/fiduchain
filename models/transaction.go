@@ -8,9 +8,11 @@ import (
 
 type Transaction struct {
 	Id        bson.ObjectId `bson:"_id,omitempty" json:"id"`
+	SId       string        `bson:"sid,omitempty" json:"sid"`
 	Amount    int           `bson:"amount,omitempty" json:"amount"`
 	Timestamp int           `bson:"timestamp,omitempty" json:"timestamp"`
 	TimeLimit int           `bson:"time_limit,omitempty" json:"time_limit"`
+	UserTel   string        `bson:"user_tel,omitempty" json:"user_tel"`
 }
 
 func (t *Transaction) setTimeLimit(days int) {
