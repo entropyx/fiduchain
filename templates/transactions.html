@@ -39,23 +39,26 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
-  <h1>Transacciones de:   {{-  .Phone }}</h1>
+  <h1>Transacciones de  <span>{{- .Phone }}</span></h1>
+  <h2>Debt: </h2> <h3>{{- .Debt}}</h3>
+  <h2>Payment: </h2> <h3>{{- .Payment}}</h3>
+  <h2>Balance: </h2> <h3>{{- .Balance}}</h3>
   <table class="table">
     <thead>
       <tr>
+        <th>Phone</th>
         <th>Monto</th>
         <th>Timestamp</th>
         <th>Timelimit</th>
-        <th>Late</th>
       </tr>
     </thead>
     <tbody>
       {{- range .Transactions }}
         <tr>
-          <td>${{.AmountWithoutCents}}</td>
+          <td>{{.UserTel}}</td>
+          <td>{{.Amount}}</td>
           <td>{{.Timestamp}}</td>
           <td>{{.TimeLimit}}</td>
-          <td>{{.Late}}</td>
         </tr>
       {{- end }}
     </tbody>

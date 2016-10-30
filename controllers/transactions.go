@@ -12,14 +12,30 @@ import (
 )
 
 func (c *Controller) GetUserTransactions(ctx *iris.Context) {
+	var debt int
+	var payment int
 	transactions := c.getTransactionsByUserTel(ctx.Param("tel"))
 	fmt.Println("transactions", transactions)
 	type message struct {
 		Phone        string
+		Debt         float64
+		Payment      float64
+		Balance      string
 		Transactions []*models.Transaction
 	}
+	for i := 0; i < len(transactions); i++ {
+		if transactions[i].Amount < 0 {
+			debt += (transactions[i].Amount * -1)
+		} else {
+			payment += transactions[i].Amount
+		}
+	}
+
 	msg := message{
 		Phone:        ctx.Param("tel"),
+		Debt:         float64(debt) / 100,
+		Payment:      float64(payment) / 100,
+		Balance:      fmt.Sprintf("%.2f", ((float64(payment) / 100) - float64(debt)/100)),
 		Transactions: transactions,
 	}
 	ctx.Render("transactions.html", msg, iris.RenderOptions{"gzip": false, "charset": "UTF-8"})
