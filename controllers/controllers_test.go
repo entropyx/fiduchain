@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"testing"
+	"time"
 
 	mgo "gopkg.in/mgo.v2"
 
@@ -66,6 +67,29 @@ func TestUsers(t *testing.T) {
 
 				Convey("The signing key should not be empty", func() {
 					So(user.SigningKey, ShouldNotBeBlank)
+				})
+
+				Convey("Given a user transaction", func() {
+					transaction := &models.Transaction{
+						Amount:       30000,
+						VerifyingKey: user.VerifyingKey,
+						SigningKey:   user.SigningKey,
+						Timestamp:    int(time.Now().UnixNano()),
+						UserTel:      user.Tel,
+					}
+					transaction.SetTimeLimit(3)
+
+					Convey("When it is inserted into the blockchain", func() {
+						err := ctr.insertTransaction(transaction)
+
+						Convey("err should be nil", func() {
+							So(err, ShouldBeNil)
+						})
+
+						Convey("The transaction txid should not be empty", func() {
+							So(transaction.TxId, ShouldNotBeBlank)
+						})
+					})
 				})
 			})
 		})

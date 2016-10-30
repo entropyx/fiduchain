@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"github.com/entropyx/fiduchain/cli"
 	"github.com/entropyx/fiduchain/models"
 	"github.com/gin-gonic/gin"
 	"github.com/kataras/iris"
@@ -33,12 +34,11 @@ func (c *Controller) getTransactionsByUserTel(tel string) []*models.Transaction 
 	return transactions
 }
 
-func (c *Controller) insertUserTransactions() error {
-
-	return nil
-}
-
 func (c *Controller) insertTransaction(transaction *models.Transaction) error {
+	err := cli.Post("insert", transaction, transaction)
+	if err != nil {
+		return err
+	}
 	col := c.Transactions()
 	return col.Insert(transaction)
 }
