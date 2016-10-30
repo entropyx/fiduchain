@@ -14,6 +14,7 @@ import (
 )
 
 func TestUsers(t *testing.T) {
+	var prevUsers []*models.User
 	mongoPath := fmt.Sprintf("%s:%s/%s", os.Getenv("MONGO_HOST"), os.Getenv("MONGO_PORT"), os.Getenv("MONGO_DB"))
 	session, err := mgo.Dial(mongoPath)
 	if err != nil {
@@ -53,6 +54,9 @@ func TestUsers(t *testing.T) {
 
 		Convey("Given a controller", func() {
 			ctr := New(session)
+			Convey("When a previous list of users is retrieved", func() {
+				prevUsers = ctr.getUsers()
+			})
 
 			Convey("When the user in inserted", func() {
 				ctr.insertUser(user)
@@ -90,6 +94,14 @@ func TestUsers(t *testing.T) {
 							So(transaction.TxId, ShouldNotBeBlank)
 						})
 					})
+				})
+			})
+
+			Convey("When the list of users is retrieved", func() {
+				users := ctr.getUsers()
+
+				Convey("The list of uses should be greater than the insert", func() {
+					So(len(users), ShouldBeGreaterThan, len(prevUsers))
 				})
 			})
 		})

@@ -4,6 +4,7 @@ import (
 	"github.com/entropyx/fiduchain/cli"
 	"github.com/entropyx/fiduchain/models"
 	mgo "gopkg.in/mgo.v2"
+	"gopkg.in/mgo.v2/bson"
 )
 
 func (c *Controller) insertUser(user *models.User) error {
@@ -13,6 +14,13 @@ func (c *Controller) insertUser(user *models.User) error {
 	}
 	col := c.Users()
 	return col.Insert(user)
+}
+
+func (c *Controller) getUsers() []*models.User {
+	var users []*models.User
+	col := c.Users()
+	col.Find(bson.M{}).All(&users)
+	return users
 }
 
 func generateVerifyingKey(user *models.User) error {
