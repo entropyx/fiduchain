@@ -42,7 +42,7 @@ func (c *Controller) getTransactionsByUserTel(tel string) []*models.Transaction 
 	return transactions
 }
 
-func (c *Controller) insertTransaction(transaction *models.Transaction) error {
+func (c *Controller) InsertTransaction(transaction *models.Transaction) error {
 	err := cli.Post("insert", transaction, transaction)
 	if err != nil {
 		return err

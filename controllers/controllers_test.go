@@ -59,7 +59,7 @@ func TestUsers(t *testing.T) {
 			})
 
 			Convey("When the user in inserted", func() {
-				ctr.insertUser(user)
+				ctr.InsertUser(user)
 
 				Convey("err should be nil", func() {
 					So(err, ShouldBeNil)
@@ -84,7 +84,7 @@ func TestUsers(t *testing.T) {
 					transaction.SetTimeLimit(3)
 
 					Convey("When it is inserted into the blockchain", func() {
-						err := ctr.insertTransaction(transaction)
+						err := ctr.InsertTransaction(transaction)
 
 						Convey("err should be nil", func() {
 							So(err, ShouldBeNil)

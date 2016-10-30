@@ -7,7 +7,7 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
-func (c *Controller) insertUser(user *models.User) error {
+func (c *Controller) InsertUser(user *models.User) error {
 	user.Fill()
 	err := generateVerifyingKey(user)
 	if err != nil {
