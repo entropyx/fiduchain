@@ -5,16 +5,19 @@ import (
 
 	"github.com/entropyx/fiduchain/cli"
 	"github.com/entropyx/fiduchain/models"
-	"github.com/gin-gonic/gin"
-	"github.com/kataras/iris"
+
+	"github.com/kataras/iris/v12"
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
 
-func (c *Controller) GetUserTransactions(ctx *iris.Context) {
-	var debt int
-	var payment int
-	transactions := c.getTransactionsByUserTel(ctx.Param("tel"))
+func (c *Controller) GetUserTransactions(ctx iris.Context) {
+	var (
+		debt, payment int
+		telParam      = ctx.Params().Get("tel")
+	)
+
+	transactions := c.getTransactionsByUserTel(telParam)
 	fmt.Println("transactions", transactions)
 	type message struct {
 		Phone        string
@@ -32,19 +35,19 @@ func (c *Controller) GetUserTransactions(ctx *iris.Context) {
 	}
 
 	msg := message{
-		Phone:        ctx.Param("tel"),
+		Phone:        telParam,
 		Debt:         float64(debt) / 100,
 		Payment:      float64(payment) / 100,
 		Balance:      fmt.Sprintf("%.2f", ((float64(payment) / 100) - float64(debt)/100)),
 		Transactions: transactions,
 	}
-	ctx.Render("transactions.html", msg, iris.RenderOptions{"gzip": false, "charset": "UTF-8"})
+	ctx.View("transactions.html", msg)
 
 }
 
-func (c *Controller) InsertUserTransaction(context *gin.Context) {
-	transactions := c.getTransactionsByUserTel(context.Param("tel"))
-	context.JSON(200, transactions)
+func (c *Controller) InsertUserTransaction(ctx iris.Context) {
+	transactions := c.getTransactionsByUserTel(ctx.Params().Get("tel"))
+	ctx.JSON(transactions)
 }
 
 func (c *Controller) Transactions() *mgo.Collection {

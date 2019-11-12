@@ -7,7 +7,7 @@ import (
 	mgo "gopkg.in/mgo.v2"
 
 	"github.com/entropyx/fiduchain/controllers"
-	"github.com/kataras/iris"
+	"github.com/kataras/iris/v12"
 )
 
 // func main() {
@@ -29,9 +29,13 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
+	iris.RegisterOnInterrupt(session.Close)
+
 	ctrl := controllers.New(session)
-	iris.Get("/users/:tel/transactions", ctrl.GetUserTransactions)
-	iris.Get("/users", ctrl.GetPhones)
-	iris.Static("/public", "public", 1)
-	iris.Listen(":8081")
+	app := iris.New()
+	app.RegisterView(iris.HTML("./templates", ".html"))
+	app.Get("/users/{tel}/transactions", ctrl.GetUserTransactions)
+	app.Get("/users", ctrl.GetPhones)
+	app.HandleDir("/public", "./public")
+	app.Run(iris.Addr(":8081"))
 }
